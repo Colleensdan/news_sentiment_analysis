@@ -9,6 +9,27 @@ from scrapers.newsapi_scraper import NewsAPIScraper
 from plotting import plot_supplementary_table
 import os
 from config import INCLUSION_KEYWORDS  # Full list of inclusion keywords
+import json
+
+RESUME_STATE_FILE = "resume_state.json"
+
+def load_resume_state():
+    """
+    Load a dictionary of {keyword: next_page} from a JSON file.
+    If the file doesn't exist, return an empty dict.
+    """
+    if os.path.exists(RESUME_STATE_FILE):
+        with open(RESUME_STATE_FILE, "r") as f:
+            return json.load(f)
+    return {}
+
+def save_resume_state(state):
+    """
+    Save the {keyword: next_page} dictionary to a JSON file.
+    """
+    with open(RESUME_STATE_FILE, "w") as f:
+        json.dump(state, f)
+
 
 def retrieve_data(self):
     # Load headlines from DB if available and not forcing an update:
