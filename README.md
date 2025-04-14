@@ -42,6 +42,7 @@ news_analysis_project/
     ├── base_scraper.py      # Abstract base class for scraper implementations.
     ├── guardian_scraper.py  # GuardianScraper using the official Guardian API.
     └── newsapi_scraper.py   # NewsAPIScraper for collecting headlines from all sources.
+```
 
 ## Requirements and Dependencies
 
@@ -57,6 +58,7 @@ Install dependencies via pip:
 
 ```bash
 pip install requests pandas matplotlib nltk scipy
+```
 
 ## How to Use
 
