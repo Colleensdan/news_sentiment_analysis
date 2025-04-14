@@ -14,6 +14,13 @@ INCLUSION_KEYWORDS = [
 NEWSAPI_API_KEY = "ebe149e99aaf412e8369c354467455d0"
 GUARDIAN_API_KEY = "256058c7-a1e5-4837-a3df-69ccaf188e3a"
 
+GUARDIAN_API_KEYS = [
+    "e1fb2aa1-9bd9-4040-87c2-adca1ec50d90",
+    "256058c7-a1e5-4837-a3df-69ccaf188e3a",
+    "a6e87b73-600f-4568-8b1a-3a8d94c8018e"
+]
+
+
 # Configuration for NewsAPI scraper.
 NEWSAPI_CONFIG = {
     "base_url": "https://newsapi.org/v2/everything",
