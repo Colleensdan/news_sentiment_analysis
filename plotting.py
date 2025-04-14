@@ -2,6 +2,60 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+import matplotlib.pyplot as plt
+
+def plot_supplementary_table(supp_table):
+    """
+    Generate a matplotlib figure that displays the supplementary statistical table
+    with adequate space for all values. The header row is shaded and bold for clarity.
+    
+    Parameters:
+      - supp_table: A pandas DataFrame containing the supplementary table.
+      
+    Returns:
+      A matplotlib figure object with the formatted table.
+    """
+    # Estimate rows and columns
+    n_rows, n_cols = supp_table.shape
+
+    # Create a figure sized to fit the table content
+    # Increase width or height if columns/rows are large
+    fig_width = 2 + n_cols * 2
+    fig_height = 2 + 0.5 * n_rows
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
+
+    ax.axis('tight')
+    ax.axis('off')
+
+    # Create the table
+    table = ax.table(
+        cellText=supp_table.values,
+        colLabels=supp_table.columns,
+        loc='center',
+        cellLoc='center'
+    )
+
+    # Let Matplotlib auto-size columns based on content
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+
+    # Attempt to auto-fit column widths based on content
+    table.auto_set_column_width(col=list(range(n_cols)))
+
+    # Optionally scale the table if further space is needed
+    # (scale_x, scale_y) = (1.0, 1.2) for instance
+    table.scale(1.0, 1.2)
+
+    # Shade and bold the header row (row == 0)
+    for (row, col), cell in table.get_celld().items():
+        if row == 0:
+            cell.set_facecolor('#cccccc')  # light grey
+            cell.set_text_props(weight='bold')
+
+    fig.tight_layout()
+    return fig
+
+
 def plot_sentiment_distribution(df, stats_results=None):
     """
     Generate a polished bar chart of headline sentiment distribution with error bars.

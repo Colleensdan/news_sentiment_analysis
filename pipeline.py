@@ -6,6 +6,8 @@ from analysis import SentimentAnalyzer
 from plotting import plot_sentiment_distribution
 from scrapers.guardian_scraper import GuardianScraper
 from scrapers.newsapi_scraper import NewsAPIScraper
+from plotting import plot_supplementary_table
+
 
 class NewsPipeline:
     """
@@ -59,9 +61,13 @@ class NewsPipeline:
         headlines = analyzer.perform_sentiment_analysis(headlines)
         stats_results = analyzer.perform_statistical_tests(headlines)
         
-        print("\nSupplementary Statistical Table:")
-        print(stats_results["supplementary_table"].to_string(index=False))
-        
+        from plotting import plot_supplementary_table
+
+        # Generate and display the stats table as a figure.
+        supp_fig = plot_supplementary_table(stats_results["supplementary_table"])
+        supp_fig.show()  # Alternatively, use plt.show() if needed.
+
+
         if stats_results["chi2_p"] < 0.05:
             chi_interpretation = (f"the overall sentiment distribution is significantly different (chi-square p={stats_results['chi2_p']:.4f}, "
                                   f"Cramér's V = {stats_results['cramers_v']:.3f}),")
