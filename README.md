@@ -58,6 +58,7 @@ Install dependencies via pip:
 
 ```bash
 pip install requests pandas matplotlib nltk scipy
+```
 
 ## How to Use
 
