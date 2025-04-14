@@ -1,7 +1,20 @@
 {
-    "*phone*": 131,
-    "screens": 60,
+    "*phone*": 1426,
+    "screens": 153,
     "telephones": 24,
     "smartphones": 154,
-    "social media": 747
+    "social media": 1074,
+    "TikTok": 2,
+    "Instagram": 341,
+    "Facebook": 2,
+    "reels": 2,
+    "scrolling": 1,
+    "doomscrolling": 1,
+    "brainrot": 1,
+    "mobile": 1,
+    "cellphone": 1,
+    "Snapchat": 70,
+    "Twitter": 1249,
+    "apps": 459,
+    "WhatsApp": 1
 }

@@ -68,7 +68,7 @@ class GuardianScraper(BaseScraper):
                         # If no API keys remain, save progress and return collected headlines.
                         resume_state[keyword] = page
                         save_resume_state(resume_state)
-                        return self._deduplicate(all_headlines)
+                        break
 
                 if response.status_code != 200:
                     print(f"Error: Status code {response.status_code} on keyword '{keyword}', page {page}")
