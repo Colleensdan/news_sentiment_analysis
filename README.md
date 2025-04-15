@@ -132,5 +132,4 @@ This project is released under the MIT License.
 
 The News Analysis Project provides a robust pipeline for collecting, processing, and analyzing newspaper headline sentiment. With flexible update options, resume state functionality, and in-depth statistical analysis, it offers a solid foundation for further news analytics and research.
 
-Happy coding!
 
