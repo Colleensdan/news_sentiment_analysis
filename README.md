@@ -5,7 +5,7 @@
 The **News Analysis Project** is a modular, object-oriented Python application designed to collect, analyze, and visualize newspaper headlines over the last 5 years. The project supports two distinct data collection methods:
 
 1. **Guardian-only Mode (Default):**  
-   Uses the official Guardian API (with the key `e1fb2aa1-9bd9-4040-87c2-adca1ec50d90`) to collect headlines exclusively from The Guardian. No web scraping is involved.
+   Uses the official Guardian API to collect headlines exclusively from The Guardian. No web scraping is involved.
 
 2. **All-Sources Mode:**  
    Uses NewsAPI to collect headlines across all available sources, with additional debugging output to help diagnose issues.
@@ -132,5 +132,4 @@ This project is released under the MIT License.
 
 The News Analysis Project provides a robust pipeline for collecting, processing, and analyzing newspaper headline sentiment. With flexible update options, resume state functionality, and in-depth statistical analysis, it offers a solid foundation for further news analytics and research.
 
-Happy coding!
 
