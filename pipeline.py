@@ -139,32 +139,54 @@ class NewsPipeline:
     def run(self):
         headlines = self.retrieve_data()
         print(f"Database now contains {len(headlines)} headlines.")
+
         analyzer = SentimentAnalyzer()
         headlines = analyzer.perform_sentiment_analysis(headlines)
+
+        # ←—— INSERTED: print sentiment % breakdown
+        sentiment_counts = headlines['sentiment'].value_counts(dropna=False)
+        total = sentiment_counts.sum()
+        print("\nSentiment percentages:")
+        for sentiment, count in sentiment_counts.items():
+            pct = count / total * 100
+            print(f"  {sentiment.capitalize():8s}: {pct:5.2f}%")
+
         stats_results = analyzer.perform_statistical_tests(headlines)
-        
+
+        # show supplementary stats table as figure
         supp_fig = plot_supplementary_table(stats_results["supplementary_table"])
         supp_fig.show()
 
+        # interpret chi² and Mann–Whitney
         if stats_results["chi2_p"] < 0.05:
-            chi_interpretation = (f"the overall sentiment distribution is significantly different (chi-square p={stats_results['chi2_p']:.4f}, "
-                                  f"Cramér's V = {stats_results['cramers_v']:.4f}),")
+            chi_interpretation = (
+                f"the overall sentiment distribution is significantly different "
+                f"(chi-square p={stats_results['chi2_p']:.4f}, Cramér's V = {stats_results['cramers_v']:.4f}),"
+            )
         else:
-            chi_interpretation = (f"there is no significant difference in the overall sentiment distribution (chi-square p={stats_results['chi2_p']:.4f}),")
-        
+            chi_interpretation = (
+                f"there is no significant difference in the overall sentiment distribution "
+                f"(chi-square p={stats_results['chi2_p']:.4f}),"
+            )
+
         if stats_results["mannwhitney_p"] < 0.05:
-            mwu_interpretation = (f"and there is a significant difference between positive and negative headlines "
-                                  f"(Mann–Whitney U p={stats_results['mannwhitney_p']:.4f}, "
-                                  f"Cliff's delta = {stats_results['cliffs_delta']:.4f}).")
+            mwu_interpretation = (
+                f"and there is a significant difference between positive and negative headlines "
+                f"(Mann–Whitney U p={stats_results['mannwhitney_p']:.4f}, "
+                f"Cliff's delta = {stats_results['cliffs_delta']:.4f})."
+            )
         else:
-            mwu_interpretation = (f"and there is no significant difference between positive and negative headlines "
-                                  f"(Mann–Whitney U p={stats_results['mannwhitney_p']:.4f}).")
-        
+            mwu_interpretation = (
+                f"and there is no significant difference between positive and negative headlines "
+                f"(Mann–Whitney U p={stats_results['mannwhitney_p']:.4f})."
+            )
+
         print("\nStatistical Analysis Summary:")
         print(f"Based on our tests, {chi_interpretation} {mwu_interpretation}")
-        
+
         plot_sentiment_distribution(headlines, stats_results)
         self.db.close()
+
 
 if __name__ == "__main__":
     import argparse
