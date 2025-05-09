@@ -2,10 +2,10 @@
 
 ## Overview
 
-The **News Analysis Project** is a modular, object-oriented Python application designed to collect, analyze, and visualize newspaper headlines over the last 5 years. The project supports two distinct data collection methods:
+The **News Analysis Project** is a modular, object-oriented Python application designed to collect, analyse, and visualise newspaper headlines over the last 5 years. The project supports two distinct data collection methods:
 
 1. **Guardian-only Mode (Default):**  
-   Uses the official Guardian API to collect headlines exclusively from The Guardian. No web scraping is involved.
+   Uses the official Guardian API to collect headlines exclusively from The Guardian. 
 
 2. **All-Sources Mode:**  
    Uses NewsAPI to collect headlines across all available sources, with additional debugging output to help diagnose issues.
